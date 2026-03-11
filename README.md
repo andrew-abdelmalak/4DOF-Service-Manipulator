@@ -5,17 +5,15 @@
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b-orange)](https://www.mathworks.com/products/matlab.html)
 [![Arduino](https://img.shields.io/badge/Arduino-Uno-teal)](https://www.arduino.cc/)
 
-This repository contains the source code, simulation environments, and hardware control software accompanying the paper:
+A desktop-scale **4-DOF service robotic manipulator** designed for automated beverage preparation. The system covers the full robotics development pipeline — from DH-based kinematic modeling through dual-platform simulation (Gazebo + Simscape) to physical hardware execution on a 3D-printed arm.
 
-> **Design, Kinematic Analysis, and Experimental Validation of a 4-DOF Service Robotic Manipulator for Automated Beverage Preparation**
->
-> A. Abdelmalak, D. Boules, D. Girgis, K. Kirolous, S. Yacoub, Y. Salama — *German University in Cairo (GUC)*
+The robot performs a complete **tea-preparation demo**: sugar transport, spoon manipulation, and stirring — demonstrating coordinated multi-step service tasks using open-loop trajectory control.
 
 ---
 
 ## Overview
 
-A desktop-scale **4-DOF service manipulator** (5 joints, Joint 4 fixed) built from 3D-printed PLA and actuated by MG996R + SG90 servos. The system performs automated tea preparation: sugar transport, spoon manipulation, and stirring.
+The manipulator has 5 revolute joints (Joint 4 fixed → 4 active DOF), constructed from **3D-printed PLA** and actuated by **MG996R** (high-torque) + **SG90** (micro) servo motors. Control is handled by an Arduino Uno communicating with a PC-based trajectory planner over serial.
 
 ### DH Parameters
 
@@ -62,7 +60,7 @@ A desktop-scale **4-DOF service manipulator** (5 joints, Joint 4 fixed) built fr
 │   ├── arduino/                        # Arduino servo control
 │   │   ├── receiver/receiver.ino       # Arduino firmware
 │   │   ├── send_trajectory.py          # PC → Arduino trajectory sender
-│   │   └── trajectories/              # Pre-computed CSV joint angles
+│   │   └── trajectories/             # Pre-computed CSV joint angles
 │   │
 │   └── cad/                            # SolidWorks CAD exports
 │       ├── 5_DOF_Robot_Assembly.SLDASM # Full assembly
@@ -118,23 +116,12 @@ open('simulation/matlab/simscape/x5_DOF_Robot_Assembly.slx')
 ### Arduino Hardware
 
 1. Upload `hardware/arduino/receiver/receiver.ino` to the Arduino Uno
-2. Connect servos per pin assignments in the paper (Table II)
+2. Connect servos to PWM pins (Base→3, Shoulder→5, Elbow→6, Wrist→9, Gripper→10)
 3. Run: `python hardware/arduino/send_trajectory.py`
 
+See [`hardware/arduino/README.md`](hardware/arduino/README.md) for detailed setup, calibration, and troubleshooting.
+
 ---
-
-## Citation
-
-```bibtex
-@inproceedings{abdelmalak2025manipulator,
-  title   = {Design, Kinematic Analysis, and Experimental Validation of a 
-             4-DOF Service Robotic Manipulator for Automated Beverage Preparation},
-  author  = {Abdelmalak, Andrew and Boules, Daniel and Girgis, David and 
-             Kirolous, Kirolous and Yacoub, Samir and Salama, Youssef},
-  year    = {2025},
-  school  = {German University in Cairo}
-}
-```
 
 ## Authors
 
