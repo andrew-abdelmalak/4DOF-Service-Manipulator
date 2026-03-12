@@ -1,6 +1,6 @@
 %% create_jacobian_func.m
 % This script derives the symbolic linear Jacobian and creates the 
-% function 'jacobian_matrix.m' as required by Milestone 03, Task 1.
+% function 'jacobian_matrix.m' 
 
 % --- 1) Run FK script to get symbolic variables
 % This script (run_fk_4dof.m) must be in the same folder.
@@ -33,7 +33,7 @@ disp('Symbolic linear Jacobian (J_sym_linear):');
 
 %% create_jacobian_func.m
 % This script derives the symbolic linear Jacobian and creates the 
-% function 'jacobian_matrix.m' as required by Milestone 03, Task 1.
+% function 'jacobian_matrix.m' 
 % --- 1) Run FK script to get symbolic variables
 % This script (run_fk_4dof.m) must be in the same folder.
 % It will create 'q' (1x4 sym vector) and 'pos_sym' (3x1 sym vector)
@@ -85,7 +85,7 @@ catch ME
     disp('This might happen if the file was not created correctly.');
     rethrow(ME);
 end
-disp('Task 1.1 (Jacobian) complete. You now have jacobian_matrix.m');
+disp('Jacobian generation complete. You now have jacobian_matrix.m');
 
 
 
@@ -111,4 +111,4 @@ catch ME
     rethrow(ME);
 end
 
-disp('Task 1.1 (Jacobian) complete. You now have jacobian_matrix.m');
+disp('Jacobian generation complete. You now have jacobian_matrix.m');

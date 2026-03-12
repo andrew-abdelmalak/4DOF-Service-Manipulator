@@ -4,7 +4,7 @@
 
 clear; clc;
 
-% --- 1. CONFIGURATION (Matches Python/Milestone 4) ---
+% --- 1. CONFIGURATION (Matches Python trajectory planner) ---
 circle_center = [0.15; 0.0; 0.15];
 circle_radius = 0.03;
 total_time = 10.0; % Duration of the circle

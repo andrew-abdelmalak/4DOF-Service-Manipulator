@@ -230,7 +230,7 @@ def main():
     home_dir = os.path.expanduser('~')
     header = ['Q1_deg', 'Q2_deg', 'Q3_deg', 'Q4_deg']
     
-    rospy.loginfo(f"--- Starting Milestone 4: {mode.upper()} Trajectory ---")
+    rospy.loginfo(f"--- Starting 
     
     # 1. Move to Home Position (Common Start)
     q_home = [0, 0, 0, 0]

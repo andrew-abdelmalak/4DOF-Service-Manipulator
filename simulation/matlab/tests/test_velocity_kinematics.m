@@ -1,6 +1,6 @@
 %% test_velocity_kinematics.m
 % This script performs a full round-trip test on all kinematics functions,
-% similar to the Python script 'ms3_validate_roundtrip.py'.
+% similar to the Python script 'Velocity_validate_roundtrip.py'.
 %
 % Round-trip:
 %   (q, q_dot) -> (x, V) -> (q_rec, q_dot_rec)
@@ -39,11 +39,11 @@ for i = 1:length(test_cases)
     print_vec('q (input)', q_in);
     print_vec('q_dot (input)', q_dot_in);
     
-    % 1) Forward position (MS2)
+    % 1) Forward position (Position)
     x = fk_pos_func(q_in); % 3x1
     print_vec('x = FK(q)', x);
     
-    % 2) Forward velocity (MS3)
+    % 2) Forward velocity (Velocity)
     V = forward_velocity_kinematics(q_in, q_dot_in); % 6x1
     print_vec('V = J(q) * q_dot', V);
     

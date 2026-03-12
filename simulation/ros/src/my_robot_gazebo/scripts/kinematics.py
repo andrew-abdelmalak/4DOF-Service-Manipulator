@@ -21,7 +21,7 @@ def get_full_kinematics(q):
     """
     q1, q2, q3, q4 = q[0], q[1], q[2], q[3]
 
-    # We only really need the EE position for IK, so call your MS2 FK:
+    # We only really need the EE position for IK, so call your Forward Kinematics:
     x, y, z = forward_kinematics_func(q1, q2, q3, q4)
     return np.array([x, y, z])
 

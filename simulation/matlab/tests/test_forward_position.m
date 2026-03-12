@@ -14,7 +14,7 @@ end
 
 % --- 2) Define Test Case ---
 % We will test the "zero-joint configuration".
-% From Deliverables.pdf and milestone3_node.py, we know:
+% From the trajectory node specifications, we know:
 % q = [0, 0, 0, 0] should result in X = [0, 0, 0.4255]
 
 q_test = [0.0, 0.0, 0.0, 0.0];      % 1x4 row vector

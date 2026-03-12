@@ -3,10 +3,10 @@
 validate_roundtrip.py
 
 Offline test (no Gazebo, no /end_effector_pose) that validates:
-- MS2 forward kinematics
-- MS3 forward velocity kinematics
-- MS3 inverse position kinematics
-- MS3 inverse velocity kinematics
+- Forward position kinematics
+- Forward velocity kinematics
+- Inverse position kinematics
+- Inverse velocity kinematics
 
 Round-trip:
   (q, q_dot) -> (x, V) -> (q_rec, q_dot_rec)
@@ -36,11 +36,11 @@ def single_test(q, q_dot):
     print_vec("q      (input)", q)
     print_vec("q_dot  (input)", q_dot)
 
-    # 1) Forward position (MS2)
+    # 1) Forward position (Position)
     x = np.array(forward_kinematics_func(q[0], q[1], q[2], q[3]))
     print_vec("x = FK(q)", x)
 
-    # 2) Forward velocity (MS3)
+    # 2) Forward velocity (Velocity)
     V = forward_velocity_kinematics(q, q_dot)
     print_vec("V = J(q) * q_dot", V)
 
