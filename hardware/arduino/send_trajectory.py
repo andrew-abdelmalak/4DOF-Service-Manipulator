@@ -7,11 +7,11 @@ import sys
 SERIAL_PORT = '/dev/cu.usbserial-110'      # WINDOWS: 'COM3', 'COM4', etc.
                           # LINUX/MAC: '/dev/ttyUSB0' or '/dev/ttyACM0'
 BAUD_RATE = 115200        # Must match Arduino
-CSV_FILE_1 = 'csv_files/trajectory_data_combined_1_square1.csv'  # First trajectory - Square 1
-CSV_FILE_2 = 'csv_files/trajectory_data_combined_2_square2.csv'  # Second trajectory - Square 2
-CSV_FILE_3 = 'csv_files/trajectory_data_combined_3_square2_rev.csv'  # Third trajectory - Square 2 Reverse
-CSV_FILE_5 = 'csv_files/trajectory_data_combined_4_transition.csv'  # Fourth trajectory - Transition
-CSV_FILE_4 = 'csv_files/trajectory_data_combined_5_circle.csv'  # Fifth trajectory - Circle
+CSV_FILE_1 = 'trajectories/trajectory_data_combined_1_square1.csv'  # First trajectory - Square 1
+CSV_FILE_2 = 'trajectories/trajectory_data_combined_2_square2.csv'  # Second trajectory - Square 2
+CSV_FILE_3 = 'trajectories/trajectory_data_combined_3_square2_rev.csv'  # Third trajectory - Square 2 Reverse
+CSV_FILE_4 = 'trajectories/trajectory_data_combined_4_transition.csv'  # Fourth trajectory - Transition
+CSV_FILE_5 = 'trajectories/trajectory_data_combined_5_circle.csv'  # Fifth trajectory - Circle
 DELAY_BETWEEN_POINTS = 0.1 # Seconds (matches your old 100ms delay)
 CIRCLE_DELAY = 0.05 # Faster delay for circle trajectory (50ms)
 
@@ -91,14 +91,14 @@ def main():
         print(f"Square 2 Reverse: Loaded {len(square2_reverse_data)} points from {CSV_FILE_3}")
         
         # Load Transition Trajectory
-        with open(CSV_FILE_5, 'r') as f:
+        with open(CSV_FILE_4, 'r') as f:
             transition_data = [row for row in csv.reader(f) if len(row) >= 4]
-        print(f"Transition: Loaded {len(transition_data)} points from {CSV_FILE_5}")
+        print(f"Transition: Loaded {len(transition_data)} points from {CSV_FILE_4}")
         
         # Load Circle
-        with open(CSV_FILE_4, 'r') as f:
+        with open(CSV_FILE_5, 'r') as f:
             circle_data = [row for row in csv.reader(f) if len(row) >= 4]
-        print(f"Circle: Loaded {len(circle_data)} points from {CSV_FILE_4}")
+        print(f"Circle: Loaded {len(circle_data)} points from {CSV_FILE_5}")
         
         if len(square1_data) == 0 or len(square2_data) == 0 or len(square2_reverse_data) == 0 or len(transition_data) == 0 or len(circle_data) == 0:
             print("ERROR: One or more CSV files are empty!")
