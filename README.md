@@ -1,6 +1,8 @@
 # 4-DOF Service Robotic Manipulator for Automated Beverage Preparation
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![CI](https://github.com/andrew-abdelmalak/4-dof-service-manipulator/actions/workflows/lint.yml/badge.svg)](https://github.com/andrew-abdelmalak/4-dof-service-manipulator/actions)
 [![ROS](https://img.shields.io/badge/ROS-Noetic-blue)](http://wiki.ros.org/noetic)
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b-orange)](https://www.mathworks.com/products/matlab.html)
 [![Arduino](https://img.shields.io/badge/Arduino-Uno-teal)](https://www.arduino.cc/)

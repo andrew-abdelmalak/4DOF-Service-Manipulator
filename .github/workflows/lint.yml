@@ -7,21 +7,12 @@ on:
     branches: [ main ]
 
 jobs:
-  python-lint:
+  ruff:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Run Ruff linter
+        uses: astral-sh/ruff-action@v3
         with:
-          python-version: "3.10"
-
-      - name: Install linter
-        run: pip install ruff
-
-      - name: Run Ruff on ROS scripts
-        run: ruff check simulation/ros/src/my_robot_gazebo/scripts/ --select E,F,W --ignore E501
-
-      - name: Run Ruff on hardware scripts
-        run: ruff check hardware/arduino/send_trajectory.py --select E,F,W --ignore E501
+          args: check simulation/ros/src/my_robot_gazebo/scripts/ hardware/arduino/ --select E,F,W --ignore E501
