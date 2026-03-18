@@ -7,7 +7,6 @@ l1 = 0.04355
 l2 = 0.140
 l3 = 0.133
 l4 = 0.109
-l5 = 0.109 # Added link length for the 5th joint
 
 def transformation_func(theta, d, a, alpha):
     """
@@ -22,28 +21,24 @@ def transformation_func(theta, d, a, alpha):
     ])
     return T
 
-def forward_kinematics_func(q1, q2, q3, q5):
+def forward_kinematics_func(q1, q2, q3, q4):
     """
-    Calculates the end-effector's position (x, y, z) for the new 4-DOF arm configuration
-    (q1, q2, q3, q5) based on the provided DH-Table. q4 is considered fixed at 0.
+    Calculates the end-effector's position (x, y, z) for the 4-DOF arm.
     """
-    # Get the transformation matrix for each joint. Note that q4 is now 0.
     T01 = transformation_func(q1, l1, 0,  np.pi/2)
-    T12 = transformation_func(np.pi/2+ q2, 0,  l2, np.pi)
+    T12 = transformation_func(np.pi/2 + q2, 0,  l2, np.pi)
     T23 = transformation_func(q3, 0,  l3, np.pi)
-    T45 = transformation_func(q5, 0, l4,  0)       # New transformation for q5
+    T34 = transformation_func(q4, 0,  l4, 0)
 
-    # Calculate the total transformation from base to the new end-effector frame (joint 5)
-    T05 = np.dot(T01, np.dot(T12, np.dot(T23, T45)))
+    T04 = np.dot(T01, np.dot(T12, np.dot(T23, T34)))
 
-    # Extract the X, Y, Z position from the final matrix
-    x = T05[0, 3]
-    y = T05[1, 3]
-    z = T05[2, 3]
+    x = T04[0, 3]
+    y = T04[1, 3]
+    z = T04[2, 3]
 
     return [x, y, z]
 
-# Test case for the new configuration
+
 if __name__ == '__main__':
     ee_position = forward_kinematics_func(0.5, 0.5, 0.5, 0.5)
-    print(f"Calculated 4-DOF Position (q1, q2, q3, q5) (x, y, z): {ee_position}")
+    print(f"Calculated 4-DOF Position (x, y, z): {ee_position}")

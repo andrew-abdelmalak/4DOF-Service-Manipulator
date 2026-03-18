@@ -50,13 +50,13 @@ def main():
 
     # Calculate the expected position using the new set of variable joints
     calculated_position = forward_kinematics_func(q1, q2, q3, q5)
-    
+
     # Print the comparison
     print("\n--- Forward Kinematics Validation (New 4-DOF Arm: q1,q2,q3,q5) ---")
     print(f"Calculated (Predicted) Position: [x={calculated_position[0]:.4f}, y={calculated_position[1]:.4f}, z={calculated_position[2]:.4f}]")
     if latest_ee_pose:
         print(f"Actual (from Gazebo /end_effector_pose): [x={latest_ee_pose.x:.4f}, y={latest_ee_pose.y:.4f}, z={latest_ee_pose.z:.4f}]")
-        
+
         error = np.array(calculated_position) - np.array([latest_ee_pose.x, latest_ee_pose.y, latest_ee_pose.z])
         error_magnitude = np.linalg.norm(error)
         print(f"\nPosition Error Magnitude: {error_magnitude:.6f}")

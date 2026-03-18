@@ -5,8 +5,8 @@ function T_total = get_transform_matrix(q1, q2, q3, q4)
     % Link Lengths (Must match your existing files)
     d1 = 0.04355; 
     a2 = 0.14000; 
-    a3 = 0.13240; 
-    a4 = 0.01213; 
+    a3 = 0.13300; 
+    a4 = 0.10900; 
 
     % DH Transformations (Matches your forward_kinematics_func)
     T0_1 = transformation_func(q1,      d1, 0.0,  pi/2);

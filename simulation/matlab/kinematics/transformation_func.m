@@ -1,4 +1,8 @@
 function T = transformation_func(theta, d, a, alpha)
+% TRANSFORMATION_FUNC  Standard DH homogeneous transformation matrix.
+%   T = transformation_func(theta, d, a, alpha) returns the 4x4 matrix
+%   for a single link given DH parameters. Supports both numeric and
+%   symbolic inputs.
 
     % If any input is symbolic, ensure all arithmetic stays symbolic
     if isa(theta, 'sym') || isa(d, 'sym') || isa(a, 'sym') || isa(alpha, 'sym')

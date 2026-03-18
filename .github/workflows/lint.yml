@@ -1,0 +1,27 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install linter
+        run: pip install ruff
+
+      - name: Run Ruff on ROS scripts
+        run: ruff check simulation/ros/src/my_robot_gazebo/scripts/ --select E,F,W --ignore E501
+
+      - name: Run Ruff on hardware scripts
+        run: ruff check hardware/arduino/send_trajectory.py --select E,F,W --ignore E501

@@ -6,9 +6,8 @@ import numpy as np
 
 from kinematics import (
     jacobian_matrix,
-    inverse_kinematics_func,      # uses your MS02 FK internally
+    inverse_kinematics_func,
     forward_velocity_kinematics,
-    inverse_velocity_kinematics
 )
 
 # Latest end-effector state from Gazebo

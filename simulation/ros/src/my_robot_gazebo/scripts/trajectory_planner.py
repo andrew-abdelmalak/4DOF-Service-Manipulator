@@ -31,17 +31,17 @@ def get_circular_trajectory(center, radius, total_time, dt):
     steps = int(total_time / dt)
     trajectory_points = []
     time_steps = []
-    
+
     center = np.array(center)
     # Extract z height (constant for a flat circle)
     z_height = center[2]
 
     for i in range(steps + 1):
         t = i * dt
-        
+
         # Calculate angle theta based on time (0 to 2*pi)
         theta = (2 * np.pi / total_time) * t
-        
+
         # Parametric Circle Equations:
         # x = cx + r * cos(theta)
         # y = cy + r * sin(theta)
@@ -66,7 +66,7 @@ def get_joint_space_trajectory(q_start, q_end, total_time, dt):
     """ Generates a Joint-Space Cubic Trajectory for all joints. """
     steps = int(total_time / dt)
     num_joints = len(q_start)
-    
+
     # Calculate coefficients for EACH joint
     coeffs = []
     for j in range(num_joints):
@@ -78,12 +78,12 @@ def get_joint_space_trajectory(q_start, q_end, total_time, dt):
     for i in range(steps + 1):
         t = i * dt
         current_q = []
-        
+
         for j in range(num_joints):
             c0, c1, c2, c3 = coeffs[j]
             q_val = c0 + (c1 * t) + (c2 * t**2) + (c3 * t**3)
             current_q.append(q_val)
-            
+
         trajectory_qs.append(np.array(current_q))
         time_steps.append(t)
 

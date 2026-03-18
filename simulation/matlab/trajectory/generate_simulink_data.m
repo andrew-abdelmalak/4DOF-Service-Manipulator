@@ -11,7 +11,7 @@ total_time = 10.0; % Duration of the circle
 dt = 0.01;         % Small time step for smooth Simulink motion
 
 % Robot Link Lengths (Needed for IK context if not hardcoded in functions)
-% l1=0.04355, l2=0.140, l3=0.1324, l4=0.01213
+% l1=0.04355, l2=0.140, l3=0.133, l4=0.109
 
 % --- 2. GENERATE TRAJECTORY POINTS ---
 % Calculate Circle Start Position

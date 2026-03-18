@@ -8,8 +8,8 @@ function pos = forward_kinematics_func(q1, q2, q3, q4)
 % Define Link Lengths (must be constants for codegen)
 d1 = 0.04355; % base offset
 a2 = 0.14000; % link 2
-a3 = 0.13240; % link 3
-a4 = 0.01213; % wrist
+a3 = 0.13300; % link 3
+a4 = 0.10900; % wrist
 
 % Call transformation_func for each link
 % This requires transformation_func.m to be on the MATLAB path.

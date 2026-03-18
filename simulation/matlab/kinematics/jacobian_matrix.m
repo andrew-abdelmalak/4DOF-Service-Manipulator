@@ -6,8 +6,8 @@ function J = jacobian_matrix(q)
 % Robot link lengths
 l1 = 0.04355;
 l2 = 0.140;
-l3 = 0.1324;
-l4 = 0.01213;
+l3 = 0.133;
+l4 = 0.109;
 
 % Build DH table
 DH = [ q(1)        l1    0    pi/2;

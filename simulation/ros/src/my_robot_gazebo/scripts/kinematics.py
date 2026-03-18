@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+"""Kinematics library for the 4-DOF manipulator.
+
+Provides forward/inverse kinematics, geometric Jacobian, and velocity
+kinematics functions used by all ROS nodes.
+"""
 
 import rospy
 import numpy as np
-import math
-# Import your MS02 functions AND your link lengths
-from forward_kinematics import transformation_func, forward_kinematics_func, l1, l2, l3, l4
+from forward_kinematics import forward_kinematics_func, l1, l2, l3, l4
 
 # Map link lengths to DH-style constants used in the Jacobian derivation
 d1 = l1                      # base offset
@@ -35,7 +38,7 @@ def jacobian_geometric(q1, q2, q3, q4):
     Returns the 6x4 geometric Jacobian for the 4-DOF robot.
     """
     s1, c1 = np.sin(q1), np.cos(q1)
-    
+
     # Intermediate angle sums based on your FK logic
     delta = q2 - q3
     sigma = delta + q4
@@ -62,7 +65,7 @@ def jacobian_geometric(q1, q2, q3, q4):
     ])
 
     return J
-    
+
 def jacobian_matrix(q):
     """
     Wrapper used by other code:
@@ -78,14 +81,14 @@ def inverse_jacobian_matrix(q, damping=0.01):
     J_dls = J.T * (J * J.T + lambda^2 * I)^-1
     """
     J = jacobian_matrix(q)
-    
+
     lambda_sq = damping ** 2
     identity = np.eye(6)
-    
+
     term1 = J.T
     term2 = np.linalg.inv(np.dot(J, J.T) + lambda_sq * identity)
     J_dls = np.dot(term1, term2)
-    
+
     return J_dls
 
 # -----------------------------------
@@ -98,10 +101,10 @@ def inverse_kinematics_func(q0, X_des, max_iter=500, tolerance=1e-4):
     INCLUDES JOINT LIMITS: [-pi/2, pi/2]
     """
     q_current = np.array(q0, dtype=float).ravel()
-    
+
     # Normalize initial guess
     q_current = np.array([normalize_angle(q) for q in q_current])
-    
+
     alpha = 0.5 # Learning rate
 
     # --- DEFINE JOINT LIMITS (Radians) ---
@@ -125,7 +128,7 @@ def inverse_kinematics_func(q0, X_des, max_iter=500, tolerance=1e-4):
             return q_current
 
         # 3. Build 6x1 task error
-        V_des = np.hstack((e, np.zeros(3)))  
+        V_des = np.hstack((e, np.zeros(3)))
 
         # 4. Damped Jacobian pseudo-inverse
         J_inv = inverse_jacobian_matrix(q_current)
@@ -135,7 +138,7 @@ def inverse_kinematics_func(q0, X_des, max_iter=500, tolerance=1e-4):
 
         # 6. Update joint angles
         q_current += alpha * q_delta
-        
+
         # 7. Normalize angles
         q_current = np.array([normalize_angle(q) for q in q_current])
 
