@@ -33,6 +33,7 @@ build/
 .env
 .venv/
 venv/
+.ruff_cache/
 
 # ========================
 # MATLAB / Simulink
