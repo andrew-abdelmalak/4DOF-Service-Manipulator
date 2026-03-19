@@ -158,9 +158,10 @@ The primary validation task demonstrates coordinated task-space motion and gripp
 │   │   ├── send_trajectory.py          # PC → Arduino trajectory sender
 │   │   └── trajectories/              # Pre-computed CSV joint angles
 │   │
-│   └── cad/                            # SolidWorks CAD exports
-│       ├── 5_DOF_Robot_Assembly.SLDASM # Full assembly
-│       └── *.STEP                      # Individual part files
+│   ├── cad/                            # SolidWorks CAD exports
+│   │   ├── 5_DOF_Robot_Assembly.SLDASM # Full assembly
+│   │   └── *.STEP                      # Individual part files
+│   └── actuator_connections.pdsprj     # Proteus circuit simulation
 │
 ├── docs/
 │   ├── 4DOF_Service_Manipulator.pdf    # Full IEEE-format technical report
